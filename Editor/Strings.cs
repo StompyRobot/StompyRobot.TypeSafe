@@ -149,7 +149,7 @@ namespace TypeSafe.Editor
         }
 
         public const string GetContentsCommentSummary =
-            "Return a list of all resources in this folder.\n" +
+            "Return a read-only list of all resources in this folder.\n" +
             "This method has a very low performance cost, no need to cache the result.";
 
         public const string GetContentsCommentReturns =
@@ -163,15 +163,15 @@ namespace TypeSafe.Editor
             "A list of resource objects in this folder and sub-folders.";
 
         public const string GetContentsGenericCommentSummary =
-            "Return a list of all resources in this folder of type <typeparamref>TResource</typeparamref> (does not include sub-folders)\n" +
-            "This method does not cache the result, so you should cache the result yourself if you will use it often.";
+            "Return an iterator of all resources in this folder of type <typeparamref>TResource</typeparamref> (does not include sub-folders)\n" +
+            "This method does not cache the result, so you should cache the result yourself if you will use it often. Convert to a list first if it will be iterated over multiple time.";
 
         public const string GetContentsGenericCommentReturns =
             "A list of <typeparamref>TResource</typeparamref> objects in this folder.";
 
         public const string GetContentsGenericRecursiveCommentSummary =
-            "Return a list of all resources in this folder of type <typeparamref>TResource</typeparamref>, including sub-folders.\n" +
-            "This method does not cache the result, so you should cache the result yourself if you will use it often.";
+            "Return a iterator of all resources in this folder of type <typeparamref>TResource</typeparamref>, including sub-folders.\n" +
+            "This method does not cache the result, so you should cache the result yourself if you will use it often. Convert to a list first if it will be iterated over multiple time.";
 
         public const string GetContentsGenericRecursiveCommentReturns =
             "A list of <typeparamref>TResource</typeparamref> objects in this folder and sub-folders.";

@@ -9,38 +9,31 @@ namespace TypeSafe
     public static class TypeSafeUtil
     {
         /// <summary>
-        /// Return a list of all resources that are assignable from <typeparamref name="TResource"/> in <paramref name="resources"/>.
+        /// Return a iterator of all resources that are assignable from <typeparamref name="TResource"/> in <paramref name="resources"/>.
         /// </summary>
         /// <typeparam name="TResource">Type of resource to return.</typeparam>
         /// <param name="resources">List of resources to check.</param>
         /// <returns>New list instance containing matching resources.</returns>
-        public static List<Resource<TResource>> GetResourcesOfType<TResource>(IList<IResource> resources)
+        public static IEnumerable<Resource<TResource>> GetResourcesOfType<TResource>(IEnumerable<IResource> resources)
             where TResource : Object
         {
-            var t = typeof (TResource);
-            var lst = new List<Resource<TResource>>();
-
-            for (var i = 0; i < resources.Count; i++)
+            foreach (var r in resources)
             {
-                var r = resources[i];
-
-                if (t == r.Type)
+                if (r is Resource<TResource>)
                 {
-                    lst.Add((Resource<TResource>) r);
+                    yield return (Resource<TResource>)r;
                 }
             }
-
-            return lst;
         }
 
         /// <summary>
         /// Call Unload() on all resources in list
         /// </summary>
-        public static void UnloadAll(IList<IResource> resources)
+        public static void UnloadAll(IEnumerable<IResource> resources)
         {
-            for (var i = 0; i < resources.Count; i++)
+            foreach (IResource r in resources)
             {
-                resources[i].Unload();
+                r.Unload();
             }
         }
     }
