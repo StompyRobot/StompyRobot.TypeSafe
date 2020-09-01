@@ -58,6 +58,40 @@ namespace TypeSafe.Editor.Compiler
             type.Members.Add(method);
         }
 
+        public static void CreateClearCacheMethod(CodeTypeDeclaration type, ResourceFolder folder, bool isRoot)
+        {
+            MemberAttributes attributes = isRoot ? MemberAttributes.Public : MemberAttributes.Assembly;
+            var method = new CodeMemberMethod
+            {
+                Name = Strings.ClearCacheMethodName,
+                Attributes = attributes | MemberAttributes.Static
+            };
+
+            method.Comments.AddRange(CompilerUtil.CreateDocsComment(Strings.ClearCacheCommentSummary,
+                Strings.GetContentsCommentReturns));
+
+            method.Statements.Add(
+                new CodeAssignStatement(new CodeFieldReferenceExpression(null, RecursiveLookupCacheName), new CodePrimitiveExpression(null)));
+
+            // Clear cache from subfolders
+            foreach (var f in folder.Folders)
+            {
+                var name = CompilerUtil.GetSafeName(f.Name, true);
+
+                // Skip if this folder hasn't been added to the type for some reason
+                if (!CompilerUtil.IsDuplicate(name, type))
+                {
+                    continue;
+                }
+
+                method.Statements.Add(new CodeMethodInvokeExpression(
+                    new CodeMethodReferenceExpression(new CodeSnippetExpression(name),
+                        Strings.ClearCacheMethodName)));
+            }
+
+            type.Members.Add(method);
+        }
+
         public static void CreateGetContentsRecursiveMethod(CodeTypeDeclaration type, ResourceFolder folder)
         {
             var cache = new CodeMemberField(GetIResourceIReadOnlyListType(), RecursiveLookupCacheName)

@@ -70,6 +70,8 @@ namespace TypeSafe.Editor
         public const string UnloadAllMethodName = "UnloadAll";
         public const string UnloadAllRecursiveMethodName = "UnloadAllRecursive";
 
+        public const string ClearCacheMethodName = "ClearCache";
+
         public const string TypeSafeInternalTagFieldName = "_tsInternal";
 
         public static readonly IList<string> ReservedNames = new ReadOnlyCollection<string>(new[]
@@ -78,6 +80,7 @@ namespace TypeSafe.Editor
             GetResourcesRecursiveMethodName,
             UnloadAllMethodName,
             UnloadAllRecursiveMethodName,
+            ClearCacheMethodName,
             "All",
             "__all",
             "None",
@@ -163,14 +166,14 @@ namespace TypeSafe.Editor
             "A list of resource objects in this folder and sub-folders.";
 
         public const string GetContentsGenericCommentSummary =
-            "Return an iterator of all resources in this folder of type <typeparamref>TResource</typeparamref> (does not include sub-folders)\n" +
+            "Return an iterator of all resources in this folder of type <typeparamref name=\"TResource\"> (does not include sub-folders)\n" +
             "This method does not cache the result, so you should cache the result yourself if you will use it often. Convert to a list first if it will be iterated over multiple time.";
 
         public const string GetContentsGenericCommentReturns =
             "A list of <typeparamref>TResource</typeparamref> objects in this folder.";
 
         public const string GetContentsGenericRecursiveCommentSummary =
-            "Return a iterator of all resources in this folder of type <typeparamref>TResource</typeparamref>, including sub-folders.\n" +
+            "Return a iterator of all resources in this folder of type <typeparamref name=\"TResource\">, including sub-folders.\n" +
             "This method does not cache the result, so you should cache the result yourself if you will use it often. Convert to a list first if it will be iterated over multiple time.";
 
         public const string GetContentsGenericRecursiveCommentReturns =
@@ -181,5 +184,8 @@ namespace TypeSafe.Editor
 
         public const string UnloadAllRecursiveCommentSummary =
             "Call Unload() on every loaded resource in this folder and subfolders.";
+
+        public const string ClearCacheCommentSummary =
+            "Clears any internal lists of assets that were cached by <see cref=\"GetContentsRecursive\"/>.";
     }
 }
