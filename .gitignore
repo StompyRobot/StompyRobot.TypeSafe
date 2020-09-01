@@ -1,0 +1,42 @@
+# =============== #
+# Unity generated #
+# =============== #
+Temp/
+Obj/
+UnityGenerated/
+Library/
+ 
+# ===================================== #
+# Visual Studio / MonoDevelop generated #
+# ===================================== #
+obj/
+bin/
+ExportedObj/
+*.svd
+*.userprefs
+*.pidb
+*.suo
+*.user
+*.unityproj
+*.booproj
+.vs/
+ 
+# ============ #
+# OS generated #
+# ============ #
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ============ #
+# Project Specific #
+# ============ #
+unity.log
+StompyRobot.TypeSafe/Assets/TypeSafe/Editor/Cache.asset.meta
+StompyRobot.TypeSafe/Assets/TypeSafe/Editor/Cache.asset
+StompyRobot.TypeSafe/*.csproj
+StompyRobot.TypeSafe/*.sln

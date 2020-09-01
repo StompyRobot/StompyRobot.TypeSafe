@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775148651662f65429083cade6d818ab, type: 3}
+  m_Name: Settings
+  m_EditorClassIdentifier: 
+  AutoRebuild: 1
+  ClassNamePrefix: SR
+  ClassNameSuffix: 
+  EnableWaiting: 1
+  EnableWhitelist: 0
+  HasShownWelcome: 1
+  IncludeNonActiveScenes: 0
+  MinimumBuildTime: 3.5
+  Namespace: 
+  OutputDirectory: $TYPESAFE$/usr
+  ResourceFolderFilter: []
+  TriggerOnInputChange: 1
+  TriggerOnLayerChange: 1
+  TriggerOnResourceChange: 1
+  TriggerOnSceneChange: 1
+  TriggerOnAssetChange: 1
+  Whitelist: []
+  DisabledDataSources: []
+  AudioMixers: []
+  Animators: []

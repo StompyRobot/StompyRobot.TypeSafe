@@ -1,0 +1,101 @@
+1.4.0
+----------
+
+New:
+- Converted package to use .asmdefs instead of pre-compiled DLLs.
+
+Fixed:
+- (1.4.1) Scenes now included correctly in generated scene list.
+
+1.3.2
+----------
+
+New:
+- Added missing overloads for Object.Instantiate in PrefabResource.
+
+1.3.1
+----------
+
+New:
+- Support for Audio Mixers parameters and snapshots.
+- Support for Animator parameters and layers.
+- Added checkboxes in advanced tab for disabling individual data sources.
+
+Changes:
+- Minimum supported Unity version is now 5.4.
+- Unity 4 is no longer supported.
+- Custom asset type cache is now stored separately from settings so it can be excluded from source control.
+
+1.2.2
+----------
+
+Changes:
+- Textures set to the "Sprite" import mode will now use the Sprite type in resources.
+- Changes to assets in blacklist no longer trigger automatic scan.
+- When whitelist is enabled, changes to assets not in whitelist no longer trigger automatic scan.
+- Items in blacklist/not in whitelist no longer have heavy processing (should speed up scan time significantly on large projects).
+- Custom asset types are now cached so subsequent scans are faster.
+
+1.2.1
+----------
+
+Changes:
+- Menu items are no longer specified in the .dll file, instead are located in TypeSafe/Editor/MenuItems.cs to allow for user customisation.
+- No longer aborts compile process if a C#-safe name for a resource cannot be found, instead skips and prints a compile error.
+- Added "Start Scan" button to settings window.
+
+Fixes:
+- Resources with a custom type that is 'private' are now declared as 'internal' to prevent "Inconsistent accessibility" errors.
+
+1.2.0
+----------
+
+New:
+- Input axes are now included in generated code (as defined in the Input Manager)
+- 'Whitelist' mode allows you to specify only the folders/assets you want to include.
+- Select what can trigger automatic scan (resources, layers, scenes, etc).
+- Customise the output directory from the settings window.
+
+Improvements:
+- Settings window updated with new layout, added changelog tab to welcome window.
+- Can opt-in to including disabled scenes in the generated code (useful for development when not including all scenes of your game in test builds)
+
+Fixes:
+- Prevent '.' character in naming scheme class names.
+- (Mac) Prevent settings asset from being overridden when reimporting project.
+
+1.1.1
+----------
+
+New:
+- Added Unload() method to resources.
+- Added UnloadAll() and UnloadAllRecursive() methods to resource folders.
+
+Improvements:
+- Resource wrappers now cache with a weak reference, so they do not prevent Resources.UnloadUnusedResources() working.
+
+1.1.0
+----------
+
+New:
+- Added ITypeSafeDataSource interface for using TypeSafe for custom data. See documentation for details.
+- Added TypeSafeApi static class for invoking TypeSafe scan/compile process via script.
+- PrefabResource.Instantiate(Vector3) overload added (no rotation)
+
+Fixes:
+- Fixed "Object has been cleaned up" warning when saving a scene with TypeSafe enabled.
+
+1.0.1
+----------
+
+New:
+- Added documentation comments to generated resource folder methods (GetContents, etc).
+
+Fixes:
+- Welcome window no longer shows up after the first time
+- Fixed Editor-only resources being included in scan
+
+1.0.0
+----------
+
+Initial version.

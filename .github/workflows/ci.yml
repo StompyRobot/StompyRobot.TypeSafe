@@ -1,0 +1,19 @@
+name: CI
+on:
+  push:
+    branches:
+    - master
+jobs:
+  split-upm:
+    name: split upm branch (force)
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: split upm branch
+      run: |
+        git branch -d upm &> /dev/null || echo upm branch not found
+        git subtree split -P "$PKG_ROOT" -b upm
+      env:
+        PKG_ROOT: StompyRobot.TypeSafe/Packages/StompyRobot.TypeSafe

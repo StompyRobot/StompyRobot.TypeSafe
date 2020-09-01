@@ -1,0 +1,8 @@
+{
+  "author": "Stompy Robot (https://github.com/stompyrobot)",
+  "description": "TypeSafe for Unity.",
+  "displayName": "StompyRobot.TypeSafe",
+  "license": "MIT",
+  "name": "com.stompyrobot.typesafe",
+  "version": "1.0.0"
+}
