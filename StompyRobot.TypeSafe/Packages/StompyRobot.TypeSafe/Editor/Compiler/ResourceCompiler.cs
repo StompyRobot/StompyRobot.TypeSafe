@@ -21,21 +21,21 @@ namespace TypeSafe.Editor.Compiler
             var container = CompilerUtil.CreateStaticType(ClassName);
             CompilerUtil.AddTypeSafeTag(container);
 
-            WriteFolder(container, database.RootFolder);
+            WriteFolder(container, database.RootFolder, true);
 
             ns.Types.Add(container);
 
             return unit;
         }
 
-        private void WriteFolder(CodeTypeDeclaration type, ResourceFolder folder)
+        private void WriteFolder(CodeTypeDeclaration type, ResourceFolder folder, bool isRoot)
         {
             ResourceCompilerUtil.WriteResources(type, folder);
 
             foreach (var f in folder.Folders)
             {
                 var c = CompilerUtil.CreateStaticType(CompilerUtil.GetSafeName(f.Name));
-                WriteFolder(c, f);
+                WriteFolder(c, f, false);
 
                 type.Members.Add(c);
             }
@@ -48,6 +48,8 @@ namespace TypeSafe.Editor.Compiler
 
             ResourceCompilerUtil.WriteUnloadAllMethod(type);
             ResourceCompilerUtil.WriteUnloadAllRecursiveMethod(type);
+
+            ResourceCompilerUtil.CreateClearCacheMethod(type, folder, isRoot);
         }
     }
 }
