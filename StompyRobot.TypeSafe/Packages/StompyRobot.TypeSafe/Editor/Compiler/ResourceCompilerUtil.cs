@@ -31,9 +31,9 @@ namespace TypeSafe.Editor.Compiler
                 }
             }
 
-            var containerField = new CodeMemberField(GetIResourceIListType(), CollectionMemberName)
+            var containerField = new CodeMemberField(GetIResourceIReadOnlyListType(), CollectionMemberName)
             {
-                InitExpression = new CodeObjectCreateExpression(GetIResourceReadOnlyCollectionType(), createExpression),
+                InitExpression = createExpression,
                 Attributes = MemberAttributes.Private | MemberAttributes.Static
             };
 
@@ -45,7 +45,7 @@ namespace TypeSafe.Editor.Compiler
             var method = new CodeMemberMethod
             {
                 Name = Strings.GetResourcesMethodName,
-                ReturnType = GetIResourceIListType(),
+                ReturnType = GetIResourceIReadOnlyListType(),
                 Attributes = MemberAttributes.Public | MemberAttributes.Static
             };
 
@@ -60,7 +60,7 @@ namespace TypeSafe.Editor.Compiler
 
         public static void CreateGetContentsRecursiveMethod(CodeTypeDeclaration type, ResourceFolder folder)
         {
-            var cache = new CodeMemberField(GetIResourceIListType(), RecursiveLookupCacheName)
+            var cache = new CodeMemberField(GetIResourceIReadOnlyListType(), RecursiveLookupCacheName)
             {
                 Attributes = MemberAttributes.Static | MemberAttributes.Private
             };
@@ -71,7 +71,7 @@ namespace TypeSafe.Editor.Compiler
             {
                 Attributes = MemberAttributes.Static | MemberAttributes.Public,
                 Name = Strings.GetResourcesRecursiveMethodName,
-                ReturnType = GetIResourceIListType()
+                ReturnType = GetIResourceIReadOnlyListType()
             };
 
             method.Comments.AddRange(CompilerUtil.CreateDocsComment(Strings.GetContentsRecursiveCommentSummary,
@@ -193,7 +193,7 @@ namespace TypeSafe.Editor.Compiler
             {
                 Name = name,
                 ReturnType =
-                    new CodeTypeReference(typeof (List<>), CodeTypeReferenceOptions.GlobalReference)
+                    new CodeTypeReference(typeof (IEnumerable<>), CodeTypeReferenceOptions.GlobalReference)
                     {
                         TypeArguments =
                         {
@@ -290,21 +290,21 @@ namespace TypeSafe.Editor.Compiler
         }
 
         /// <summary>
-        /// Get a CodeTypeReference object to the ReadOnlyCollection type with IResource as the param type
+        /// Get a CodeTypeReference object to the IList interface with IResource as the param type
         /// </summary>
-        public static CodeTypeReference GetIResourceReadOnlyCollectionType()
+        public static CodeTypeReference GetIResourceIReadOnlyListType()
         {
-            var r = new CodeTypeReference(typeof (ReadOnlyCollection<>), CodeTypeReferenceOptions.GlobalReference);
+            var r = new CodeTypeReference(typeof (IReadOnlyList<>), CodeTypeReferenceOptions.GlobalReference);
             r.TypeArguments.Add(GetIResourceType());
             return r;
         }
-
+        
         /// <summary>
-        /// Get a CodeTypeReference object to the IList interface with IResource as the param type
+        /// Get a CodeTypeReference object to the IEnumerable interface with IResource as the param type
         /// </summary>
-        public static CodeTypeReference GetIResourceIListType()
+        public static CodeTypeReference GetIResourceIEnumerableType()
         {
-            var r = new CodeTypeReference(typeof (IList<>), CodeTypeReferenceOptions.GlobalReference);
+            var r = new CodeTypeReference(typeof (IEnumerable<>), CodeTypeReferenceOptions.GlobalReference);
             r.TypeArguments.Add(GetIResourceType());
             return r;
         }
