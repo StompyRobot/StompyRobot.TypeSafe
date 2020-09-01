@@ -1,0 +1,25 @@
+{
+    "name": "TypeSafe.Editor",
+    "references": [
+        "TypeSafe.Runtime",
+        "Unity.Addressables",
+        "Unity.Addressables.Editor"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.addressables",
+            "expression": "1.1.10",
+            "define": "TYPESAFE_ENABLE_ADDRESSABLES"
+        }
+    ],
+    "noEngineReferences": false
+}
