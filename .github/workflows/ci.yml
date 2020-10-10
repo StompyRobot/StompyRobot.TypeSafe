@@ -13,7 +13,7 @@ jobs:
         fetch-depth: 0
     - name: split upm branch
       run: |
-        git branch -d upm &> /dev/null || echo upm branch not found
         git subtree split -P "$PKG_ROOT" -b upm
+        git push -u origin upm
       env:
         PKG_ROOT: StompyRobot.TypeSafe/Packages/StompyRobot.TypeSafe
